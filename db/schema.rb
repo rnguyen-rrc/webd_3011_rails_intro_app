@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_16_031141) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_16_033715) do
   create_table "areas", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "id_from_api"
     t.string "name"
     t.datetime "updated_at", null: false
   end
@@ -21,7 +20,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_16_031141) do
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
-    t.string "id_from_api"
     t.string "img_url"
     t.string "name"
     t.datetime "updated_at", null: false

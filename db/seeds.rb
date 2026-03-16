@@ -7,9 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# This file should ensure the existence of records required to run the application in every environment.
+# The data can be loaded with:
+#   rails db:seed
+
 require 'httparty'
 require 'faker'
-require 'securerandom'
 
 puts "Cleaning database..."
 
@@ -34,7 +37,6 @@ categories = HTTParty.get(categories_url)
 
 categories["meals"].each do |c|
   Category.find_or_create_by!(name: c["strCategory"]) do |category|
-    category.id_from_api = SecureRandom.uuid
     category.img_url = ""
     category.description = "Imported from MealDB"
   end
@@ -52,9 +54,7 @@ areas_url = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
 areas = HTTParty.get(areas_url)
 
 areas["meals"].each do |a|
-  Area.find_or_create_by!(name: a["strArea"]) do |area|
-    area.id_from_api = SecureRandom.uuid
-  end
+  Area.find_or_create_by!(name: a["strArea"])
 end
 
 puts "Areas created."
@@ -126,16 +126,16 @@ puts "Recipes created."
 
 puts "Generating tags..."
 
-15.times do
-  Tag.find_or_create_by!(
-    name: Faker::Food.spice
-  )
+tags = 15.times.map { Faker::Food.spice }.uniq
+
+tags.each do |tag_name|
+  Tag.find_or_create_by!(name: tag_name)
 end
 
 puts "Tags created."
 
 # assign random tags to recipes
-Recipe.all.each do |recipe|
+Recipe.find_each do |recipe|
   Tag.order("RANDOM()").limit(2).each do |tag|
     RecipeTag.find_or_create_by!(
       recipe: recipe,
