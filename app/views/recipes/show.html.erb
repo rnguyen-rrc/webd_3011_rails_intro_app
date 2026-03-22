@@ -1,0 +1,30 @@
+<div style="display: flex; gap: 36px; padding: 24px 40px; align-items: flex-start; max-width: 1400px; margin: 0 auto;">
+
+  <div style="width: 58%;">
+    <img
+      src="<%= @recipe.img_url %>"
+      alt="<%= @recipe.name %>"
+      style="width: 100%; border-radius: 8px; display: block;"
+    >
+  </div>
+
+  <div style="width: 42%;">
+    <h1 style="margin-top: 0; font-size: 48px;"><%= @recipe.name %></h1>
+
+    <p><strong>Category:</strong> <%= @recipe.category&.name %></p>
+    <p><strong>Area:</strong> <%= @recipe.area&.name %></p>
+
+    <h2>Ingredients</h2>
+    <ul>
+      <% @recipe.recipe_ingredients.each do |ri| %>
+        <li><%= ri.ingredient.name %> — <%= ri.measure %></li>
+      <% end %>
+    </ul>
+
+    <h2>Instructions</h2>
+    <p><%= @recipe.instructions %></p>
+
+    <%= link_to "← Back to Menu", menu_path %>
+  </div>
+
+</div>
