@@ -64,39 +64,26 @@ tbody tr {
   color: white;
 }
 
-/* Table container */
-.recipe-table {
-  width: 100%;
-  max-width: 700px;   /* 👈 THIS fixes the huge spacing */
-  border-collapse: collapse;
-}
-
-/* Rows */
-.recipe-table tr {
-  border-bottom: 1px solid #eee;
-}
-
-/* Cells */
-.recipe-table th,
-.recipe-table td {
-  padding: 12px;
-  text-align: left;
-  vertical-align: middle;
-}
-
-/* Image */
-.recipe-thumb {
-  width: 80px;
-  border-radius: 6px;
-}
-
-/* Link */
-.recipe-link {
-  font-size: 16px;
-  color: #007bff;
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  margin-right: 6px;
+  margin-top: 4px;
+  font-size: 12px;
+  background: #f0f0f0;
+  border-radius: 4px;
   text-decoration: none;
+  color: #333;
 }
 
-.recipe-link:hover {
-  text-decoration: underline;
+.tag:hover {
+  background: #007bff;
+  color: white;
+}
+
+.recipe-thumb {
+  width: 80px;        /* 👈 smaller */
+  height: 80px;       /* 👈 keeps it square */
+  object-fit: cover;  /* 👈 prevents stretching */
+  border-radius: 6px;
 }

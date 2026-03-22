@@ -92,6 +92,8 @@
         <%= link_to "Areas", areas_path, class: (current_page?(areas_path) || controller_name == "areas" ? "active" : "") %>
 
         <%= link_to "Ingredients", ingredients_path, class: (current_page?(ingredients_path) || controller_name == "ingredients" ? "active" : "") %>
+        
+        <%= link_to "Tags", tags_path, class: (current_page?(tags_path) || controller_name == "tags" ? "active" : "") %>
 
       </div>
     </nav>

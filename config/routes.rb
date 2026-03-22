@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :areas, only: [:index, :show]
   resources :ingredients, only: [:index, :show]
-  resources :tags, only: [:show]
+  resources :tags, only: [:index, :show]
 end

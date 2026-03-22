@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Tags</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Recipes</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td><%= tag.name %></td>
+
+          <td><%= tag.recipes.count %></td>
+
+          <td>
+            <%= link_to "Show Recipes", tag_path(tag), class: "btn btn-green" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
