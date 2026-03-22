@@ -45,16 +45,13 @@
     <% else %>
         <p>
             <% if params[:query].present? %>
-            No recipes found for "<%= params[:query] %>". Try another search.
+                No recipes found for "<%= params[:query] %>". Try another search.
+            <% elsif @selected_category %>
+                No recipes found in the "<%= @selected_category.name %>" category.
             <% elsif params[:category].present? %>
-            <% category = Category.find_by(id: params[:category]) %>
-            <% if category %>
-                No recipes found in the "<%= category.name %>" category.
-            <% else %>
                 No recipes found for the selected category.
-            <% end %>
             <% else %>
-            No recipes found.
+                No recipes found.
             <% end %>
         </p>
     <% end %>

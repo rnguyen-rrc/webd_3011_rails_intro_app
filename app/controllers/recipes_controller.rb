@@ -24,6 +24,8 @@ class RecipesController < ApplicationController
       @recipes = @recipes.where(category_id: params[:category])
     end
 
+    @selected_category = Category.find_by(id: params[:category]) if params[:category].present?
+
     @recipes = @recipes.page(params[:page]).per(8)
   end
 
