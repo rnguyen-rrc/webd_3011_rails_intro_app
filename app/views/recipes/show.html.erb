@@ -38,9 +38,12 @@
 
     <h2>Ingredients</h2>
     <ul>
-      <% @recipe.recipe_ingredients.each do |ri| %>
-        <li><%= ri.ingredient.name %> — <%= ri.measure %></li>
-      <% end %>
+    <% @recipe.recipe_ingredients.each do |ri| %>
+        <li>
+        <%= link_to ri.ingredient.name, ingredient_path(ri.ingredient) %>
+        — <%= ri.measure %>
+        </li>
+    <% end %>
     </ul>
 
     <h2>Instructions</h2>
