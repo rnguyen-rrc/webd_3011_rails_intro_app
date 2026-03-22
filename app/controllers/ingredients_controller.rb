@@ -1,6 +1,10 @@
 class IngredientsController < ApplicationController
   def index
-    @ingredients = Ingredient.joins(:recipes).distinct
+    @ingredients = Ingredient
+                    .joins(:recipes)
+                    .distinct
+                    .page(params[:page])
+                    .per(20)
   end
 
   def show

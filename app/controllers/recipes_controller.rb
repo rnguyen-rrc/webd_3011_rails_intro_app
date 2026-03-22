@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def menu
-    @recipes = Recipe.includes(:category, :area).limit(50)
+    @recipes = Recipe.page(params[:page]).per(8)
   end
 
   def show

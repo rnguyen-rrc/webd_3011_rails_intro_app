@@ -82,8 +82,75 @@ tbody tr {
 }
 
 .recipe-thumb {
-  width: 80px;        /* 👈 smaller */
-  height: 80px;       /* 👈 keeps it square */
-  object-fit: cover;  /* 👈 prevents stretching */
+  width: 80px; 
+  height: 80px; 
+  object-fit: cover; 
   border-radius: 6px;
+}
+
+.pagination-container {
+  text-align: right;
+  margin: 15px 0;
+}
+
+.pagination {
+  display: inline-flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Remove spacing between items */
+.pagination li {
+  margin: 0;
+  padding: 0;
+  display: flex; /* 👈 important */
+}
+
+/* Make ALL cells equal size */
+.pagination a,
+.pagination span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 50px;
+  height: 32px; 
+
+  /* padding: 0 6px;  */
+
+  border: none;                 /* 👈 remove default borders */
+  border-right: 1px solid #ddd; /* 👈 only RIGHT border */
+
+  text-decoration: none;
+  color: #007bff;
+  font-size: 13px; 
+  background: white;
+}
+
+/* Remove last border */
+.pagination li:last-child a,
+.pagination li:last-child span {
+  border-right: none;
+}
+
+/* Hover */
+.pagination a:hover {
+  background: #f5f5f5;
+}
+
+/* Active page */
+.pagination .current {
+  background: #0d6efd;
+  color: white;
+  border-right: 1px solid #0d6efd;
+}
+
+/* Disabled */
+.pagination .disabled {
+  color: #aaa;
+  background: #f9f9f9;
 }
