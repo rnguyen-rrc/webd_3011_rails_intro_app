@@ -8,7 +8,7 @@
       <h4 class="mb-3">📊 Dataset Description</h4>
 
       <p>
-        This application uses multiple data sources to build a structured recipe database.
+        <strong>World Wide Recipe</strong> application uses multiple data sources to build a structured recipe database.
         The primary data source is the <strong>TheMealDB API</strong>, a free public API that provides
         detailed information about meals from various cuisines around the world.
       </p>
@@ -81,23 +81,23 @@
 
       <ul>
         <li>
-          TheMealDB API provides the core data for recipes, categories, areas, and ingredients,
+          <strong>TheMealDB API</strong> provides the core data for recipes, categories, areas, and ingredients,
           which are stored in separate tables and linked using foreign keys.
         </li>
         <li>
-          Each recipe belongs to a category and an area (one-to-many relationships).
+          Each recipe belongs to a category and an area (<strong>one-to-many relationships</strong>).
         </li>
         <li>
-          Ingredients are linked to recipes through a many-to-many relationship using the
+          Ingredients are linked to recipes through a <strong>many-to-many relationship</strong> using the
           <code>recipe_ingredients</code> join table.
         </li>
         <li>
-          Tags generated using Faker are connected through a many-to-many relationship using
+          Tags generated using Faker are connected through a <strong>many-to-many relationship</strong> using
           the <code>recipe_tags</code> join table.
         </li>
         <li>
           The REST Countries API enhances the <strong>areas</strong> table by adding latitude and longitude,
-          enabling map-based visualization.
+          enabling <strong>map-based visualization</strong>.
         </li>
       </ul>
     </div>
