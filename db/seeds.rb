@@ -159,42 +159,94 @@ end
 
 puts "Tags assigned."
 
-areas = {
-  "American" => [37.0902, -95.7129],
-  "British" => [55.3781, -3.4360],
-  "Canadian" => [56.1304, -106.3468],
-  "Chinese" => [35.8617, 104.1954],
-  "Croatian" => [45.1000, 15.2000],
-  "Dutch" => [52.1326, 5.2913],
-  "Egyptian" => [26.8206, 30.8025],
-  "Filipino" => [12.8797, 121.7740],
-  "French" => [46.6034, 1.8883],
-  "Greek" => [39.0742, 21.8243],
-  "Indian" => [20.5937, 78.9629],
-  "Irish" => [53.1424, -7.6921],
-  "Italian" => [41.8719, 12.5674],
-  "Jamaican" => [18.1096, -77.2975],
-  "Japanese" => [36.2048, 138.2529],
-  "Kenyan" => [-0.0236, 37.9062],
-  "Malaysian" => [4.2105, 101.9758],
-  "Mexican" => [23.6345, -102.5528],
-  "Moroccan" => [31.7917, -7.0926],
-  "Polish" => [51.9194, 19.1451],
-  "Portuguese" => [39.3999, -8.2245],
-  "Russian" => [61.5240, 105.3188],
-  "Spanish" => [40.4637, -3.7492],
-  "Thai" => [15.8700, 100.9925],
-  "Tunisian" => [33.8869, 9.5375],
-  "Turkish" => [38.9637, 35.2433],
-  "Vietnamese" => [14.0583, 108.2772]
+# -------------------------------------------------
+# DATA SOURCE 6 - API (latlng for Areas)
+# -------------------------------------------------
+
+puts "Fetching coordinates for areas..."
+
+require "net/http"
+require "json"
+
+area_to_code = {
+  "Algerian"      => "DZ",
+  "American"      => "US",
+  "Argentinian"   => "AR",
+  "Australian"    => "AU",
+  "British"       => "GB",
+  "Canadian"      => "CA",
+  "Chinese"       => "CN",
+  "Croatian"      => "HR",
+  "Dutch"         => "NL",
+  "Egyptian"      => "EG",
+  "Filipino"      => "PH",
+  "French"        => "FR",
+  "Greek"         => "GR",
+  "Indian"        => "IN",
+  "Irish"         => "IE",
+  "Italian"       => "IT",
+  "Jamaican"      => "JM",
+  "Japanese"      => "JP",
+  "Kenyan"        => "KE",
+  "Malaysian"     => "MY",
+  "Mexican"       => "MX",
+  "Moroccan"      => "MA",
+  "Norwegian"     => "NO",
+  "Polish"        => "PL",
+  "Portuguese"    => "PT",
+  "Russian"       => "RU",
+  "Saudi Arabian" => "SA",
+  "Slovakian"     => "SK",
+  "Spanish"       => "ES",
+  "Syrian"        => "SY",
+  "Thai"          => "TH",
+  "Tunisian"      => "TN",
+  "Turkish"       => "TR",
+  "Ukrainian"     => "UA",
+  "Uruguayan"     => "UY",
+  "Venezulan"     => "VE"
+  "Vietnamese"    => "VN"
 }
 
-areas.each do |name, coords|
-  area = Area.find_by(name: name)
-  if area
-    area.update(latitude: coords[0], longitude: coords[1])
+Area.find_each do |area|
+  code = area_to_code[area.name]
+
+  unless code
+    puts "No code mapping for #{area.name}"
+    next
+  end
+
+  url = URI("https://restcountries.com/v3.1/alpha/#{code}")
+
+  begin
+    response = Net::HTTP.get_response(url)
+
+    unless response.is_a?(Net::HTTPSuccess)
+      puts "Failed API for #{area.name}"
+      next
+    end
+
+    data = JSON.parse(response.body)
+    latlng = data[0]["latlng"]
+
+    if latlng && latlng.length == 2
+      area.update!(
+        latitude: latlng[0],
+        longitude: latlng[1]
+      )
+      puts "#{area.name} → #{latlng[0]}, #{latlng[1]}"
+    else
+      puts "No latlng for #{area.name}"
+    end
+
+    sleep(0.1)
+
+  rescue => e
+    puts "Error for #{area.name}: #{e.message}"
   end
 end
+
+puts "Area coordinates assigned."
 
 puts "Area's latitude & longitude assigned."
 
