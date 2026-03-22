@@ -1,7 +1,7 @@
-<div class="container">
-  <h1>Categories</h1>
+<div class="container mt-4">
+  <h1 class="mb-4">Categories</h1>
 
-  <table>
+  <table class="table align-middle">
     <thead>
       <tr>
         <th>Name</th>
@@ -16,7 +16,7 @@
           <td><%= category.name %></td>
           <td><%= category.recipes.count %></td>
           <td>
-            <%= link_to "Show Recipes", category_path(category), class: "btn btn-green" %>
+            <%= link_to "Show Recipes", category_path(category), class: "btn btn-outline-success" %>
           </td>
         </tr>
       <% end %>

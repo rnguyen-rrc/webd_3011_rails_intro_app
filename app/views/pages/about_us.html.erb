@@ -1,94 +1,109 @@
-<div style="max-width: 900px; margin: auto; font-family: Arial, sans-serif;">
+<div class="container my-5" style="max-width: 900px;">
 
-  <h1>About This Recipe Application</h1>
+  <h1 class="mb-4 text-center">📖 About </h1>
 
-  <p>
-    This application was built using Ruby on Rails as part of a full-stack web development project.
-    It demonstrates database design, data integration from multiple sources, and ActiveRecord associations.
-  </p>
+  <!-- INTRO -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <p class="mb-0">
+        <strong>World Wide Recipe</strong> application was built using Ruby on Rails as part of <i>WEBD-3011 (278691) Agile Full Stack Web Development</i> course.
+        It demonstrates database design, data integration from multiple sources, and ActiveRecord associations.
+      </p>
+    </div>
+  </div>
 
-  <hr>
+  <!-- DATA SOURCES -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="mb-3">📊 Data Sources</h4>
 
-  <h2>📊 Data Sources</h2>
+      <ul class="mb-3">
+        <li class="mb-2">
+          <strong>TheMealDB API (Categories)</strong><br>
+          <a href="https://www.themealdb.com/api/json/v1/1/list.php?c=list" target="_blank" class="link-primary">
+            View API Endpoint
+          </a>
+        </li>
+        <li><strong>TheMealDB API (Areas)</strong><br>
+          <a href="https://www.themealdb.com/api/json/v1/1/list.php?a=list" target="_blank" class="link-primary">
+            View API Endpoint
+          </a>
+        </li>
+        <li><strong>TheMealDB API (Ingredients)</strong><br>
+          <a href="https://www.themealdb.com/api/json/v1/1/list.php?i=list" target="_blank" class="link-primary">
+            View API Endpoint
+          </a>
+        </li>
+        <li><strong>TheMealDB API (Recipes / Meals)</strong><br>
+          <a href="https://www.themealdb.com/api/json/v1/1/search.php?s=" target="_blank" class="link-primary">
+            View API Endpoint
+          </a>
+        </li>
+        <li><strong>REST Countries (Longitude/Latitude)</strong><br>
+        <a href="https://restcountries.com/v3.1/alpha/CA" target="_blank" class="link-primary">
+            View API Endpoint
+          </a>
+        </li>
+        <li><strong>Faker Gem</strong><br>
+          <a href="https://github.com/faker-ruby/faker" target="_blank" class="link-primary">
+            View Documentation
+          </a>
+        </li>
+      </ul>
 
-  <p>This application uses multiple data sources as required:</p>
+      <p class="mb-0">
+        These sources provide structured data that is stored in a relational database using ActiveRecord models.
+      </p>
+    </div>
+  </div>
 
-  <ul>
-    <li>
-      <strong>TheMealDB API (Categories)</strong><br>
-      https://www.themealdb.com/api/json/v1/1/list.php?c=list
-    </li>
+  <!-- DATABASE STRUCTURE -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="mb-3">🗄️ Database Structure</h4>
 
-    <li>
-      <strong>TheMealDB API (Areas)</strong><br>
-      https://www.themealdb.com/api/json/v1/1/list.php?a=list
-    </li>
+      <ul>
+        <li><strong>Recipes</strong></li>
+        <li><strong>Categories</strong></li>
+        <li><strong>Areas</strong></li>
+        <li><strong>Ingredients</strong></li>
+        <li><strong>Tags</strong></li>
+      </ul>
 
-    <li>
-      <strong>TheMealDB API (Ingredients)</strong><br>
-      https://www.themealdb.com/api/json/v1/1/list.php?i=list
-    </li>
+      <p class="mt-3"><strong>Relationships:</strong></p>
 
-    <li>
-      <strong>TheMealDB API (Recipes / Meals)</strong><br>
-      https://www.themealdb.com/api/json/v1/1/search.php?s=
-    </li>
+      <ul class="mb-0">
+        <li>A Recipe belongs to a Category and an Area</li>
+        <li>A Recipe has many Ingredients</li>
+        <li>An Ingredient could belong to many Recipes</li>
+        <li>A Recipe has many Tags</li>
+        <li>A Tag could belong to many Recipes</li>
+      </ul>
+    </div>
+  </div>
 
-    <li>
-      <strong>Faker Gem</strong><br>
-      Used to generate random tags for recipes
-    </li>
-  </ul>
+  <!-- TECHNOLOGY -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="mb-3">⚙️ Technologies Used</h4>
 
-  <p>
-    These sources provide structured data that is stored in a relational database using ActiveRecord models.
-  </p>
+      <ul class="mb-0">
+        <li>Ruby on Rails</li>
+        <li>ActiveRecord ORM</li>
+        <li>SQLite</li>
+        <li>REST APIs</li>
+      </ul>
+    </div>
+  </div>
 
-  <hr>
-
-  <h2>🗄️ Database Structure (ERD Overview)</h2>
-
-  <p>
-    The application uses a relational database with the following main entities:
-  </p>
-
-  <ul>
-    <li><strong>Recipes</strong> – central table containing meal information</li>
-    <li><strong>Categories</strong> – classification of recipes</li>
-    <li><strong>Areas</strong> – region or origin of recipes</li>
-    <li><strong>Ingredients</strong> – list of ingredients</li>
-    <li><strong>Tags</strong> – labels generated using Faker</li>
-  </ul>
-
-  <p><strong>Relationships:</strong></p>
-
-  <ul>
-    <li>A Recipe belongs to a Category and an Area</li>
-    <li>A Recipe has many Ingredients (through RecipeIngredients)</li>
-    <li>A Recipe has many Tags (through RecipeTags)</li>
-  </ul>
-
-  <p>
-    Join tables (<em>RecipeIngredients</em> and <em>RecipeTags</em>) are used to implement many-to-many relationships.
-  </p>
-
-  <hr>
-
-  <h2>⚙️ Technologies Used</h2>
-
-  <ul>
-    <li>Ruby on Rails</li>
-    <li>ActiveRecord ORM</li>
-    <li>SQLite Database</li>
-    <li>REST APIs</li>
-  </ul>
-
-  <hr>
-
-  <h2>👩‍💻 Developer</h2>
-
-  <p>
-    Developed by <strong>Roline (RRC Polytech Student)</strong> as part of a Rails Intro Project.
-  </p>
+  <!-- DEVELOPER -->
+  <div class="card shadow-sm">
+    <div class="card-body text-center">
+      <h5 class="mb-2">👩‍💻 Developer</h5>
+      <p class="mb-0">
+        Developed by <strong>Roline</strong> (RRC Polytech Student)
+      </p>
+    </div>
+  </div>
 
 </div>

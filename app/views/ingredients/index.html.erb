@@ -1,9 +1,11 @@
-<div class="container">
+<div class="container mt-4">
   <h1>Ingredients</h1>
-<div class="pagination-container">
+
+  <div class="d-flex justify-content-center my-3">
     <%= paginate @ingredients %>
   </div>
-  <table>
+
+  <table class="table align-middle">
     <thead>
       <tr>
         <th>Name</th>
@@ -20,13 +22,13 @@
           <td><%= ingredient.recipes.count %></td>
 
           <td>
-            <%= link_to "Show Recipes", ingredient_path(ingredient), class: "btn btn-green" %>
+            <%= link_to "Show Recipes", ingredient_path(ingredient), class: "btn btn-outline-success" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <div class="pagination-container">
+  <div class="d-flex justify-content-center my-3">
     <%= paginate @ingredients %>
   </div>
 </div>

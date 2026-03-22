@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container mt-4">
   <h1>Tags</h1>
 
-  <table>
+  <table class="table align-middle">
     <thead>
       <tr>
         <th>Name</th>
@@ -18,7 +18,7 @@
           <td><%= tag.recipes.count %></td>
 
           <td>
-            <%= link_to "Show Recipes", tag_path(tag), class: "btn btn-green" %>
+            <%= link_to "Show Recipes", tag_path(tag), class: "btn btn-outline-success" %>
           </td>
         </tr>
       <% end %>

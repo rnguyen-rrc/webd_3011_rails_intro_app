@@ -1,20 +1,9 @@
 <div class="container">
   <h1><%= @area.name %> Area</h1>
 
-  <% if @area.latitude.present? && @area.longitude.present? %>
-  <div style="margin-bottom: 24px;">
-    <iframe
-      class="map-frame"
-      height="300"
-      style="border:0; border-radius: 8px;"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=<%= @area.longitude - 5 %>,<%= @area.latitude - 5 %>,<%= @area.longitude + 5 %>,<%= @area.latitude + 5 %>&layer=mapnik&marker=<%= @area.latitude %>,<%= @area.longitude %>">
-    </iframe>
-  </div>
-  <% end %>
+  
 
-  <h2>Recipes in Area:</h2>
+  <h2>Recipes in <span style="font-style: italic;"><%= @area.name %></span> Area:</h2>
 
   <table class="recipe-table">
     <thead>
@@ -44,4 +33,19 @@
   <br>
 
   <%= link_to "← Back to Areas", areas_path %>
+
+  <br>
+
+  <% if @area.latitude.present? && @area.longitude.present? %>
+  <div style="margin-bottom: 24px;">
+    <iframe
+      class="map-frame"
+      height="300"
+      style="border:0; border-radius: 8px;"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=<%= @area.longitude - 5 %>,<%= @area.latitude - 5 %>,<%= @area.longitude + 5 %>,<%= @area.latitude + 5 %>&layer=mapnik&marker=<%= @area.latitude %>,<%= @area.longitude %>">
+    </iframe>
+  </div>
+  <% end %>
 </div>
