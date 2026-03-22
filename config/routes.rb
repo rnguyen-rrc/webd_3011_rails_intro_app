@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "recipes/menu"
   get "pages/about_us"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,4 +15,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get "about", to: "pages#about_us"
+  get "menu", to: "recipes#menu"
 end
