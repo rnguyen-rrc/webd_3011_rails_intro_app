@@ -3,22 +3,9 @@
   <head>
     <title><%= content_for(:title) || "Rails Intro App" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Rails Intro App">
-    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
@@ -28,9 +15,11 @@
         font-family: "Segoe UI", Arial, sans-serif;
       }
 
+      /* NAVBAR */
       .navbar {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         background-color: black;
         padding: 10px 20px;
       }
@@ -43,19 +32,12 @@
       }
 
       .brand:hover {
-        text-decoration: none;
         color: #ddd;
       }
 
-      .nav-links a {
-        color: white;
-        margin-right: 15px;
-        text-decoration: none;
-        font-size: 16px;
-      }
-
-      .nav-links a:hover {
-        color: grey;
+      .nav-left {
+        display: flex;
+        align-items: center;
       }
 
       .nav-links a {
@@ -69,35 +51,146 @@
         color: #d8d8d8;
       }
 
-      /* 🔥 Active link */
       .nav-links a.active {
         color: white;
         font-weight: 500;
+      }
+
+      /* SEARCH */
+      .search-form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .search-wrapper {
+        position: relative;
+      }
+
+      .search-input {
+        padding: 8px 30px 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        width: 220px;
+      }
+
+      .clear-btn {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #888;
+        font-weight: bold;
+        display: none;
+      }
+
+      .clear-btn:hover {
+        color: #000;
+      }
+
+      .search-select {
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      .search-btn {
+        padding: 8px 14px;
+        border-radius: 6px;
+        border: 1px solid #28a745;
+        background: transparent;
+        color: #28a745;
+        cursor: pointer;
+      }
+
+      .search-btn:hover {
+        background: #28a745;
+        color: white;
       }
     </style>
   </head>
 
   <body>
-  <!-- Navigation Bar -->
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-      <%= link_to "World Wide Recipes", "/menu", class: "brand" %>
 
-      <div class="nav-links">
-        <%= link_to "Menu", menu_path, class: (current_page?(menu_path) || controller_name == "recipes" ? "active" : "") %>
-        
-        <%= link_to "About", about_path, class: (current_page?(about_path) ? "active" : "") %>
+      <!-- LEFT -->
+      <div class="nav-left">
+        <%= link_to "World Wide Recipes", menu_path, class: "brand" %>
 
-        <%= link_to "Categories", categories_path, class: (current_page?(categories_path) || controller_name == "categories" ? "active" : "") %>
-
-        <%= link_to "Areas", areas_path, class: (current_page?(areas_path) || controller_name == "areas" ? "active" : "") %>
-
-        <%= link_to "Ingredients", ingredients_path, class: (current_page?(ingredients_path) || controller_name == "ingredients" ? "active" : "") %>
-        
-        <%= link_to "Tags", tags_path, class: (current_page?(tags_path) || controller_name == "tags" ? "active" : "") %>
-
+        <div class="nav-links">
+          <%= link_to "Menu", menu_path, class: (current_page?(menu_path) || controller_name == "recipes" ? "active" : "") %>
+          <%= link_to "About", about_path, class: (current_page?(about_path) ? "active" : "") %>
+          <%= link_to "Categories", categories_path, class: (controller_name == "categories" ? "active" : "") %>
+          <%= link_to "Areas", areas_path, class: (controller_name == "areas" ? "active" : "") %>
+          <%= link_to "Ingredients", ingredients_path, class: (controller_name == "ingredients" ? "active" : "") %>
+          <%= link_to "Tags", tags_path, class: (controller_name == "tags" ? "active" : "") %>
+        </div>
       </div>
+
+      <!-- RIGHT (SEARCH) -->
+      <form action="<%= menu_path %>" method="get" class="search-form">
+        
+        <div class="search-wrapper">
+          <input 
+            type="text" 
+            name="query"
+            placeholder="Recipe Search"
+            value="<%= params[:query] %>"
+            class="search-input"
+            id="search-input"
+          >
+
+          <span class="clear-btn" id="clear-btn">×</span>
+        </div>
+
+        <select name="category" class="search-select">
+          <option value="">All</option>
+          <% Category.all.each do |c| %>
+            <option value="<%= c.id %>" <%= "selected" if params[:category] == c.id.to_s %>>
+              <%= c.name %>
+            </option>
+          <% end %>
+        </select>
+
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+
     </nav>
 
     <%= yield %>
+
+   <script>
+  document.addEventListener("turbo:load", function () {
+    const input = document.getElementById("search-input");
+    const clearBtn = document.getElementById("clear-btn");
+
+    if (!input || !clearBtn) return;
+
+    if (input.dataset.initialized) return;
+    input.dataset.initialized = "true";
+
+    function toggleClear() {
+      clearBtn.style.display = input.value.trim() ? "block" : "none";
+    }
+
+    clearBtn.addEventListener("click", function () {
+      input.value = "";
+      input.focus();
+      toggleClear();
+
+      // Submit form to reload full results
+      input.form.submit();
+    });
+
+    input.addEventListener("input", toggleClear);
+
+    toggleClear();
+  });
+</script>   
+
   </body>
 </html>
+

@@ -246,8 +246,6 @@ Area.find_each do |area|
   end
 end
 
-puts "Area coordinates assigned."
-
 puts "Area's latitude & longitude assigned."
 
 puts "Seeding completed successfully."

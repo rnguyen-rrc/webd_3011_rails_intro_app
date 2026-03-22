@@ -154,3 +154,79 @@ tbody tr {
   color: #aaa;
   background: #f9f9f9;
 }
+
+/* container */
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* input */
+.search-wrapper {
+  position: relative;
+}
+
+.search-input {
+  padding: 8px 30px 8px 12px;
+  border-radius: 3px !important;
+  border: 1px solid #ccc;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-size: 16px;  
+  line-height: 1;
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  color: #888;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.clear-btn:hover {
+  color: black;
+}
+
+/* dropdown */
+.search-select {
+  padding: 8px 10px;
+  border-radius: 3px !important;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* button */
+.search-btn {
+  padding: 8px 14px;
+  border-radius: 3px !important;
+  border: 1px solid #28a745;
+  background-color: transparent;
+  color: #28a745;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* hover effect */
+.search-btn:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.search-input {
+  width: 200px;
+}
+
+.search-form {
+  margin-left: auto; /* pushes to right side of navbar */
+}
