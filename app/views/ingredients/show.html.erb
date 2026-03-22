@@ -1,9 +1,34 @@
-<h1>Ingredients</h1>
+<div class="container">
+  <h1><%= @ingredient.name %> Recipes</h1>
 
-<ul>
-  <% @ingredients.each do |ingredient| %>
-    <li>
-      <%= link_to ingredient.name, ingredient_path(ingredient) %>
-    </li>
-  <% end %>
-</ul>
+  <h2>Recipes using this ingredient:</h2>
+
+  <table class="recipe-table">
+    <thead>
+      <tr>
+        <th style="width: 100px;">Image</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @recipes.each do |recipe| %>
+        <tr>
+          <td>
+            <% if recipe.img_url.present? %>
+              <img src="<%= recipe.img_url %>" class="recipe-thumb">
+            <% end %>
+          </td>
+
+          <td>
+            <%= link_to recipe.name, recipe_path(recipe), class: "recipe-link" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to "← Back to Ingredients", ingredients_path %>
+</div>

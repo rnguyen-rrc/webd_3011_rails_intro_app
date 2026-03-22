@@ -1,9 +1,27 @@
-<h1><%= @ingredient.name %></h1>
+<div class="container">
+  <h1>Ingredients</h1>
 
-<h2>Ingredients</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Recipes</th>
+        <th></th>
+      </tr>
+    </thead>
 
-<% @ingredient.each do |ingredient| %>
-  <div>
-    <%= link_to ingredient.name, ingredient_path(ingredient) %>
-  </div>
-<% end %>
+    <tbody>
+      <% @ingredients.each do |ingredient| %>
+        <tr>
+          <td><%= ingredient.name %></td>
+
+          <td><%= ingredient.recipes.count %></td>
+
+          <td>
+            <%= link_to "Show Recipes", ingredient_path(ingredient), class: "btn btn-green" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

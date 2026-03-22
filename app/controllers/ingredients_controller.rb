@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.joins(:recipes).distinct
   end
 
   def show
