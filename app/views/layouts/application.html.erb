@@ -123,11 +123,14 @@
 
         <div class="nav-links">
           <%= link_to "Menu", menu_path, class: (current_page?(menu_path) || controller_name == "recipes" ? "active" : "") %>
-          <%= link_to "About", about_path, class: (current_page?(about_path) ? "active" : "") %>
           <%= link_to "Categories", categories_path, class: (controller_name == "categories" ? "active" : "") %>
           <%= link_to "Areas", areas_path, class: (controller_name == "areas" ? "active" : "") %>
           <%= link_to "Ingredients", ingredients_path, class: (controller_name == "ingredients" ? "active" : "") %>
           <%= link_to "Tags", tags_path, class: (controller_name == "tags" ? "active" : "") %>
+
+          <%= link_to "About", about_path, class: (current_page?(about_path) ? "active" : "") %>
+          <%= link_to "Datasets", datasets_path, class: (current_page?(datasets_path) ? "active" : "") %>
+
         </div>
       </div>
 

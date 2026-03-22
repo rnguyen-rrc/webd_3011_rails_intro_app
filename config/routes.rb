@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get "about", to: "pages#about_us"
   get "menu", to: "recipes#menu"
+  get "datasets", to: "pages#datasets"
   
   resources :recipes, only: [:show]
   resources :categories, only: [:index, :show]

@@ -1,0 +1,124 @@
+<div class="container my-5" style="max-width: 1000px;">
+
+  <h1 class="text-center mb-5">📊 Data Sources & Database Design</h1>
+
+  <!-- DATASET DESCRIPTION -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="mb-3">📊 Dataset Description</h4>
+
+      <p>
+        This application uses multiple data sources to build a structured recipe database.
+        The primary data source is the <strong>TheMealDB API</strong>, a free public API that provides
+        detailed information about meals from various cuisines around the world.
+      </p>
+
+      <p>
+        The API returns JSON data containing attributes such as meal name, category, cuisine area,
+        instructions, image URLs, and ingredients.
+      </p>
+
+      <p>
+        In addition, the <strong>REST Countries API</strong> is used to enrich the dataset by providing
+        geographic information (latitude and longitude) for each cuisine area. This allows the application
+        to display recipe origins on a map.
+      </p>
+
+      <p class="mb-0">
+        The <strong>Faker gem</strong> is also used as a secondary data source to generate tags for recipes,
+        adding extra metadata for filtering and organization.
+      </p>
+    </div>
+  </div>
+
+  <!-- DATA STRUCTURE -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="mb-3">🧱 Data Structure</h4>
+
+      <p>TheMealDB API organizes data as objects with multiple attributes, including:</p>
+
+      <ul>
+        <li><strong>strMeal</strong> – recipe name</li>
+        <li><strong>strCategory</strong> – category</li>
+        <li><strong>strArea</strong> – cuisine</li>
+        <li><strong>strInstructions</strong> – preparation instructions</li>
+        <li><strong>strMealThumb</strong> – image URL</li>
+        <li><strong>strIngredient1</strong> through <strong>strIngredient20</strong> – ingredients</li>
+      </ul>
+
+      <p>
+        Because ingredients are stored as separate fields in the API response, they are extracted and
+        normalized into a separate table in the database.
+      </p>
+
+      <p class="mt-3"><strong>Database Tables:</strong></p>
+
+      <ul>
+        <li><strong>Recipes</strong> – id, name, instructions, img_url, category_id, area_id</li>
+        <li><strong>Categories</strong> – id, name</li>
+        <li><strong>Areas</strong> – id, name, latitude, longitude</li>
+        <li><strong>Ingredients</strong> – id, name</li>
+        <li><strong>Tags</strong> (generated using Faker) – id, name</li>
+        <li><strong>RecipeIngredients</strong> – recipe_id, ingredient_id</li>
+        <li><strong>RecipeTags</strong> – recipe_id, tag_id</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DATA INTEGRATION -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="mb-3">🔗 Data Integration</h4>
+
+      <ul>
+        <li>
+          TheMealDB API provides the core data for recipes, categories, areas, and ingredients,
+          which are stored in separate tables and linked using foreign keys.
+        </li>
+        <li>
+          Each recipe belongs to a category and an area (one-to-many relationships).
+        </li>
+        <li>
+          Ingredients are linked to recipes through a many-to-many relationship using the
+          <code>recipe_ingredients</code> join table.
+        </li>
+        <li>
+          Tags generated using Faker are connected through a many-to-many relationship using
+          the <code>recipe_tags</code> join table.
+        </li>
+        <li>
+          The REST Countries API enhances the <strong>areas</strong> table by adding latitude and longitude,
+          enabling map-based visualization.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="mb-3">🧠 Summary</h4>
+
+      <p class="mb-0">
+        By combining structured API data with generated data, this application demonstrates how multiple
+        datasets can be integrated into a cohesive system. The relational database design allows efficient
+        searching, filtering, and navigation across recipes, categories, ingredients, and regions.
+      </p>
+    </div>
+  </div>
+
+  <!-- ERD -->
+  <div class="card shadow-sm">
+    <div class="card-body text-center">
+      <h4 class="mb-3">🗄️ Entity Relationship Diagram (ERD)</h4>
+
+      <p class="mb-4">
+        The diagram below illustrates the database schema and relationships between tables.
+      </p>
+
+      <%= image_tag "erd.png", class: "img-fluid rounded shadow", alt: "ERD Diagram" %>
+    </div>
+  </div>
+
+</div>
