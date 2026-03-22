@@ -163,31 +163,43 @@
     <%= yield %>
 
    <script>
-  document.addEventListener("turbo:load", function () {
-    const input = document.getElementById("search-input");
-    const clearBtn = document.getElementById("clear-btn");
+    // Search by typing key works and shows clear button when there's text, hides it when empty
+    document.addEventListener("turbo:load", function () {
+      const input = document.getElementById("search-input");
+      const clearBtn = document.getElementById("clear-btn");
 
-    if (!input || !clearBtn) return;
+      if (!input || !clearBtn) return;
 
-    if (input.dataset.initialized) return;
-    input.dataset.initialized = "true";
+      if (input.dataset.initialized) return;
+      input.dataset.initialized = "true";
 
-    function toggleClear() {
-      clearBtn.style.display = input.value.trim() ? "block" : "none";
-    }
+      function toggleClear() {
+        clearBtn.style.display = input.value.trim() ? "block" : "none";
+      }
 
-    clearBtn.addEventListener("click", function () {
-      input.value = "";
-      input.focus();
+      clearBtn.addEventListener("click", function () {
+        input.value = "";
+        input.focus();
+        toggleClear();
+
+        // Submit form to reload full results
+        input.form.submit();
+      });
+
+      input.addEventListener("input", toggleClear);
+
       toggleClear();
-
-      // Submit form to reload full results
-      input.form.submit();
     });
 
-    input.addEventListener("input", toggleClear);
+    // Search by category select auto-submits form on change
+    document.addEventListener("turbo:load", function () {
+    const select = document.querySelector(".search-select");
 
-    toggleClear();
+    if (!select) return;
+
+    select.addEventListener("change", function () {
+      this.form.submit();
+    });
   });
 </script>   
 
