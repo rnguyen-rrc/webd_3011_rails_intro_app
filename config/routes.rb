@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   get "about", to: "pages#about_us"
   get "menu", to: "recipes#menu"
   resources :recipes, only: [:show]
+  resources :categories, only: [:index, :show]
+  resources :areas, only: [:index, :show]
+  resources :ingredients, only: [:index, :show]
+  resources :tags, only: [:show]
 end

@@ -11,8 +11,19 @@
   <div style="width: 42%;">
     <h1 style="margin-top: 0; font-size: 48px;"><%= @recipe.name %></h1>
 
-    <p><strong>Category:</strong> <%= @recipe.category&.name %></p>
-    <p><strong>Area:</strong> <%= @recipe.area&.name %></p>
+    <p>
+        <strong>Category:</strong>
+        <% if @recipe.category %>
+            <%= link_to @recipe.category.name, category_path(@recipe.category) %>
+        <% end %>
+        </p>
+
+        <p>
+        <strong>Area:</strong>
+        <% if @recipe.area %>
+            <%= link_to @recipe.area.name, area_path(@recipe.area) %>
+        <% end %>
+        </p>
 
     <h2>Ingredients</h2>
     <ul>

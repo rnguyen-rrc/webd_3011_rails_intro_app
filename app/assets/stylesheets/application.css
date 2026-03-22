@@ -8,3 +8,95 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+/* Layout */
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Headings */
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+thead {
+  border-bottom: 2px solid #ddd;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+/* Buttons */
+.btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-green {
+  border: 1px solid green;
+  color: green;
+}
+
+.btn-green:hover {
+  background: green;
+  color: white;
+}
+
+/* Table container */
+.recipe-table {
+  width: 100%;
+  max-width: 700px;   /* 👈 THIS fixes the huge spacing */
+  border-collapse: collapse;
+}
+
+/* Rows */
+.recipe-table tr {
+  border-bottom: 1px solid #eee;
+}
+
+/* Cells */
+.recipe-table th,
+.recipe-table td {
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Image */
+.recipe-thumb {
+  width: 80px;
+  border-radius: 6px;
+}
+
+/* Link */
+.recipe-link {
+  font-size: 16px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.recipe-link:hover {
+  text-decoration: underline;
+}

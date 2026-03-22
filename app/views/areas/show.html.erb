@@ -1,0 +1,9 @@
+<h1><%= @area.name %></h1>
+
+<h2>Areas</h2>
+
+<% @areas.each do |area| %>
+  <div>
+    <%= link_to area.name, area_path(area) %>
+  </div>
+<% end %>

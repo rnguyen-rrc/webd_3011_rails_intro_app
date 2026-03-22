@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Categories</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Recipes</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= category.recipes.count %></td>
+          <td>
+            <%= link_to "Show Recipes", category_path(category), class: "btn btn-green" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

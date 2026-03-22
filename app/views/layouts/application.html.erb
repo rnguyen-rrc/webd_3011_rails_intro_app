@@ -84,7 +84,15 @@
 
       <div class="nav-links">
         <%= link_to "Menu", menu_path, class: (current_page?(menu_path) || controller_name == "recipes" ? "active" : "") %>
+        
         <%= link_to "About", about_path, class: (current_page?(about_path) ? "active" : "") %>
+
+        <%= link_to "Categories", categories_path, class: (current_page?(categories_path) || controller_name == "categories" ? "active" : "") %>
+
+        <%= link_to "Areas", areas_path, class: (current_page?(areas_path) || controller_name == "areas" ? "active" : "") %>
+
+        <%= link_to "Ingredients", ingredients_path, class: (current_page?(ingredients_path) || controller_name == "ingredients" ? "active" : "") %>
+
       </div>
     </nav>
 
