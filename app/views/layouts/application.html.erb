@@ -25,33 +25,67 @@
     <style>
       body {
         margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
+        font-family: "Segoe UI", Arial, sans-serif;
       }
 
-      nav {
-        background: #333;
+      .navbar {
+        display: flex;
+        align-items: center;
+        background-color: black;
+        padding: 10px 20px;
+      }
+
+      .brand {
         color: white;
-        padding: 10px;
-      }
-
-      nav a {
-        color: blue;
-        margin-right: 10px;
+        font-size: 22px;
+        margin-right: 30px;
         text-decoration: none;
       }
 
-      nav a:hover {
-        text-decoration: underline;
+      .brand:hover {
+        text-decoration: none;
+        color: #ddd;
+      }
+
+      .nav-links a {
+        color: white;
+        margin-right: 15px;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .nav-links a:hover {
+        color: grey;
+      }
+
+      .nav-links a {
+        color: #a8a8a8;
+        margin-right: 15px;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .nav-links a:hover {
+        color: #d8d8d8;
+      }
+
+      /* 🔥 Active link */
+      .nav-links a.active {
+        color: white;
+        font-weight: 500;
       }
     </style>
   </head>
 
   <body>
   <!-- Navigation Bar -->
-    <nav style="padding: 10px; background: #eee;">
-      <%= link_to "Menu", "/menu" %> 
-      <%= link_to "About", "/about" %>
+    <nav class="navbar">
+      <%= link_to "World Wide Recipes", "/menu", class: "brand" %>
+
+      <div class="nav-links">
+        <%= link_to "Menu", menu_path, class: (current_page?(menu_path) ? "active" : "") %>
+        <%= link_to "About", about_path, class: (current_page?(about_path) ? "active" : "") %>
+      </div>
     </nav>
 
     <%= yield %>
