@@ -39,29 +39,37 @@
       <p>TheMealDB API organizes data as objects with multiple attributes, including:</p>
 
       <ul>
-        <li><strong>strMeal</strong> – recipe name</li>
-        <li><strong>strCategory</strong> – category</li>
-        <li><strong>strArea</strong> – cuisine</li>
-        <li><strong>strInstructions</strong> – preparation instructions</li>
-        <li><strong>strMealThumb</strong> – image URL</li>
-        <li><strong>strIngredient1</strong> through <strong>strIngredient20</strong> – ingredients</li>
+        <li><strong>strMeal</strong> - recipe name</li>
+        <li><strong>strCategory</strong> - category</li>
+        <li><strong>strArea</strong> - cuisine</li>
+        <li><strong>strInstructions</strong> - preparation instructions</li>
+        <li><strong>strMealThumb</strong> - image URL</li>
+        <li><strong>strIngredient1</strong> through <strong>strIngredient20</strong> - ingredients
+            <p class="mt-2 text-muted">
+                Because ingredients are stored as separate fields in the API response, they are extracted and
+                normalized into a separate table in the database.
+            </p>
+        </li>
       </ul>
-
-      <p>
-        Because ingredients are stored as separate fields in the API response, they are extracted and
-        normalized into a separate table in the database.
-      </p>
 
       <p class="mt-3"><strong>Database Tables:</strong></p>
 
       <ul>
-        <li><strong>Recipes</strong> – id, name, instructions, img_url, category_id, area_id</li>
-        <li><strong>Categories</strong> – id, name</li>
-        <li><strong>Areas</strong> – id, name, latitude, longitude</li>
-        <li><strong>Ingredients</strong> – id, name</li>
-        <li><strong>Tags</strong> (generated using Faker) – id, name</li>
-        <li><strong>RecipeIngredients</strong> – recipe_id, ingredient_id</li>
-        <li><strong>RecipeTags</strong> – recipe_id, tag_id</li>
+        <li><strong>Recipes</strong> - id, name, instructions, img_url, category_id, area_id</li>
+        <li><strong>Categories</strong> - id, name</li>
+        <li><strong>Areas</strong> - id, name, latitude, longitude</li>
+        <li><strong>Ingredients</strong> - id, name</li>
+        <li>
+            <strong>Tags</strong> (generated using Faker) - id, name
+            <p class="mt-2 text-muted">
+                Tags in this application are generated using the Faker gem as an additional data source.
+                These tags are randomly assigned to recipes to demonstrate how generated data can be
+                integrated into the system. Because they are not derived from API data, they may not always
+                accurately reflect the recipe content.
+            </p>
+        </li>
+        <li><strong>RecipeIngredients</strong> - recipe_id, ingredient_id</li>
+        <li><strong>RecipeTags</strong> - recipe_id, tag_id</li>
       </ul>
     </div>
   </div>
