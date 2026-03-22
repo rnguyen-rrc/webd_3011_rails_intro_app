@@ -16,7 +16,7 @@
         <tr>
           <td>
             <% if recipe.img_url.present? %>
-              <img src="<%= recipe.img_url %>" class="recipe-thumb">
+              <img src="<%= recipe.img_url %>" class="recipe-thumb" alt="<%= recipe.name %>">
             <% end %>
           </td>
 

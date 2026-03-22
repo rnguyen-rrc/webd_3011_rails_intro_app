@@ -230,3 +230,9 @@ tbody tr {
 .search-form {
   margin-left: auto; /* pushes to right side of navbar */
 }
+
+.map-frame {
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+}
