@@ -1,9 +1,34 @@
-<h1><%= @area.name %></h1>
+<div class="container">
+  <h1><%= @area.name %> Area</h1>
 
-<h2>Areas</h2>
+  <h2>Recipes in Area:</h2>
 
-<% @areas.each do |area| %>
-  <div>
-    <%= link_to area.name, area_path(area) %>
-  </div>
-<% end %>
+  <table class="recipe-table">
+    <thead>
+      <tr>
+        <th style="width: 100px;">Image</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @recipes.each do |recipe| %>
+        <tr>
+          <td>
+            <% if recipe.img_url.present? %>
+              <img src="<%= recipe.img_url %>" class="recipe-thumb">
+            <% end %>
+          </td>
+
+          <td>
+            <%= link_to recipe.name, recipe_path(recipe), class: "recipe-link" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to "← Back to Areas", areas_path %>
+</div>

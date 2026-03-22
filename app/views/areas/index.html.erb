@@ -1,9 +1,27 @@
-<h1>Areas</h1>
+<div class="container">
+  <h1>Areas</h1>
 
-<ul>
-  <% @areas.each do |area| %>
-    <li>
-      <%= link_to area.name, area_path(area) %>
-    </li>
-  <% end %>
-</ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Recipes</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @areas.each do |area| %>
+        <tr>
+          <td><%= area.name %></td>
+
+          <td><%= area.recipes.count %></td>
+
+          <td>
+            <%= link_to "Show Recipes", area_path(area), class: "btn btn-green" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

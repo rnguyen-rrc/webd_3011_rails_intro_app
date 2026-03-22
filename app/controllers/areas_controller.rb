@@ -1,6 +1,6 @@
 class AreasController < ApplicationController
   def index
-    @areas = Area.all
+    @areas = Area.joins(:recipes).distinct
   end
 
   def show
