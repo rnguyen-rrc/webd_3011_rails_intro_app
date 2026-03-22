@@ -1,49 +1,94 @@
-<div style="max-width: 800px; margin: auto; font-family: Arial, sans-serif;">
+<div style="max-width: 900px; margin: auto; font-family: Arial, sans-serif;">
 
-  <h1>About This Recipe App</h1>
+  <h1>About This Recipe Application</h1>
 
   <p>
-    This web application was developed as part of a Rails project to demonstrate
-    full-stack development using Ruby on Rails.
+    This application was built using Ruby on Rails as part of a full-stack web development project.
+    It demonstrates database design, data integration from multiple sources, and ActiveRecord associations.
   </p>
 
-  <h2>🍽️ What This App Does</h2>
+  <hr>
+
+  <h2>📊 Data Sources</h2>
+
+  <p>This application uses multiple data sources as required:</p>
+
   <ul>
-    <li>Browse recipes from different categories and regions</li>
-    <li>View ingredients and measurements for each recipe</li>
-    <li>Explore tags and classifications for meals</li>
+    <li>
+      <strong>TheMealDB API (Categories)</strong><br>
+      https://www.themealdb.com/api/json/v1/1/list.php?c=list
+    </li>
+
+    <li>
+      <strong>TheMealDB API (Areas)</strong><br>
+      https://www.themealdb.com/api/json/v1/1/list.php?a=list
+    </li>
+
+    <li>
+      <strong>TheMealDB API (Ingredients)</strong><br>
+      https://www.themealdb.com/api/json/v1/1/list.php?i=list
+    </li>
+
+    <li>
+      <strong>TheMealDB API (Recipes / Meals)</strong><br>
+      https://www.themealdb.com/api/json/v1/1/search.php?s=
+    </li>
+
+    <li>
+      <strong>Faker Gem</strong><br>
+      Used to generate random tags for recipes
+    </li>
   </ul>
 
-  <h2>🔗 Data Sources</h2>
   <p>
-    This app integrates multiple data sources:
+    These sources provide structured data that is stored in a relational database using ActiveRecord models.
   </p>
+
+  <hr>
+
+  <h2>🗄️ Database Structure (ERD Overview)</h2>
+
+  <p>
+    The application uses a relational database with the following main entities:
+  </p>
+
   <ul>
-    <li><strong><a href="https://www.themealdb.com/api.php" target="_blank">TheMealDB API</a></strong> for recipes, categories, areas, and ingredients</li>
-    <li><strong>Faker</strong> for generating tags</li>
+    <li><strong>Recipes</strong> – central table containing meal information</li>
+    <li><strong>Categories</strong> – classification of recipes</li>
+    <li><strong>Areas</strong> – region or origin of recipes</li>
+    <li><strong>Ingredients</strong> – list of ingredients</li>
+    <li><strong>Tags</strong> – labels generated using Faker</li>
   </ul>
+
+  <p><strong>Relationships:</strong></p>
+
+  <ul>
+    <li>A Recipe belongs to a Category and an Area</li>
+    <li>A Recipe has many Ingredients (through RecipeIngredients)</li>
+    <li>A Recipe has many Tags (through RecipeTags)</li>
+  </ul>
+
+  <p>
+    Join tables (<em>RecipeIngredients</em> and <em>RecipeTags</em>) are used to implement many-to-many relationships.
+  </p>
+
+  <hr>
 
   <h2>⚙️ Technologies Used</h2>
+
   <ul>
     <li>Ruby on Rails</li>
-    <li>ActiveRecord & SQLite</li>
-    <li>RESTful APIs</li>
+    <li>ActiveRecord ORM</li>
+    <li>SQLite Database</li>
+    <li>REST APIs</li>
   </ul>
 
-  <h2>🎯 Project Purpose</h2>
-  <p>
-    The purpose of this project is to demonstrate:
-  </p>
-  <ul>
-    <li>Database design and relationships</li>
-    <li>Data integration from multiple sources</li>
-    <li>Model validations and data integrity</li>
-    <li>Basic Rails MVC structure</li>
-  </ul>
+  <hr>
 
   <h2>👩‍💻 Developer</h2>
+
   <p>
-    Developed by Roline as part of a web development course.
+    Developed by <strong>Roline (RRC Polytech Student)</strong> as part of a Rails Intro Project.
   </p>
 
 </div>
