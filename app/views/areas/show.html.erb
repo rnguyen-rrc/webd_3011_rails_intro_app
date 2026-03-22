@@ -1,6 +1,19 @@
 <div class="container">
   <h1><%= @area.name %> Area</h1>
 
+  <% if @area.latitude.present? && @area.longitude.present? %>
+  <div style="margin-bottom: 24px;">
+    <iframe
+      width="100%"
+      height="300"
+      style="border:0; border-radius: 8px;"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=<%= @area.longitude - 5 %>,<%= @area.latitude - 5 %>,<%= @area.longitude + 5 %>,<%= @area.latitude + 5 %>&layer=mapnik&marker=<%= @area.latitude %>,<%= @area.longitude %>">
+    </iframe>
+  </div>
+  <% end %>
+
   <h2>Recipes in Area:</h2>
 
   <table class="recipe-table">
