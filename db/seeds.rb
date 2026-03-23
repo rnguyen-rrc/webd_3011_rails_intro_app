@@ -160,7 +160,7 @@ end
 puts "Tags assigned."
 
 # -------------------------------------------------
-# DATA SOURCE 6 - API (latlng for Areas)
+# DATA SOURCE 6 - API (latitude, longitude for Areas)
 # -------------------------------------------------
 
 puts "Fetching coordinates for areas..."
